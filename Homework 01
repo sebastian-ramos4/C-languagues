@@ -1,0 +1,115 @@
+/*
+Sebastián A. Ramos Flores
+Ericka L. Pagan Velez
+INGE 3016 - 011H (8:30 AM)
+Asignación 09-10-2020 Algoritmos
+
+Asignación
+Programa que toma el total de la compra, porcentaje de descuento, porcentaje de descuento adicional y impuetos.  Al final 
+muestra el total de la compra, total de los descuentos, total con el descuento y total más impuestos.  Ademas de unos mensajes
+condicionales.
+*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    float total;
+    float descuento;
+    float descuento_adicional;
+    float impuestos;
+    float total_descuentos;
+    float cantidad_descontada;
+    float total_con_descuentos;
+    float cantidad_impuestos;
+    float total_con_impuestos;
+    char simbolo_porciento = '%';
+
+    do
+    {
+        printf("Total de la compra: $");
+        scanf("%f" , &total);
+        
+        if (total < 0)
+            printf("La entrada no puede ser negativa\n");
+    }while (total < 0);
+    
+    
+    do
+    {
+        printf("Porcentaje de descuento: ");
+        scanf("%f" , &descuento);
+        
+        if (descuento < 0)
+            printf("La entrada no puede ser negativa\n");
+    }while (descuento < 0);
+   
+    
+    do
+    {
+        printf("Porcentaje de descuento adicional: ");
+        scanf("%f" , &descuento_adicional);
+        
+        if (descuento_adicional < 0)
+            printf("La entrada no puede ser negativa\n");
+    }while (descuento_adicional < 0);
+    
+    
+    do
+    {
+        printf("Porcentaje de impuestos: ");
+        scanf("%f" , &impuestos);
+        
+        if (impuestos < 0)
+            printf("La entrada no puede ser negativa\n");
+    }while (impuestos < 0);
+    
+    
+    total_descuentos = descuento + descuento_adicional;
+    
+    cantidad_descontada = total * (total_descuentos / 100.0);
+    
+    total_con_descuentos = total - cantidad_descontada;
+    
+    cantidad_impuestos = total_con_descuentos * (impuestos / 100.0);
+    
+    total_con_impuestos = total_con_descuentos + cantidad_impuestos;
+
+    
+    printf("\nTotal: $%.2f " , total);
+    printf("\n");
+    
+    printf("Porcentajes de descuentos: %.2f " , total_descuentos);
+    printf("%c" , simbolo_porciento);
+     printf("\n");
+    
+    printf("Total con los descuentos: $%.2f " , total_con_descuentos);
+     printf("\n");
+    
+    printf("Total con los impuestos: $%.2f " , total_con_impuestos);
+     printf("\n");
+    
+    if (total_descuentos >= 20)
+    {
+        printf("Usted es un cliente muy apreciado\n");
+    }
+    
+    if (total > 500)
+    {
+        printf("Muchas gracias por su compra.");
+    }
+    
+    else {
+        
+                    
+    printf("Gracias por su compra");
+        
+    }
+
+}
+
+
+
+
+
