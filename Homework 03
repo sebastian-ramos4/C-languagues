@@ -1,0 +1,67 @@
+/*
+
+Sebastián A. Ramos Flores
+INGE 3016-011H
+Asignacion 3 Algoritmos
+
+Escriba un programa en C utilizando funciones, definidas por usted, para convertir un número
+decimal (desde 0 hasta 1023 dado por el usuario) a número binario.
+
+Datos de prueba:
+Introduzca cualquier número decimal: 65
+
+Salida esperada:
+ El valor binario es: 1000001 
+
+*/
+
+#include <stdio.h>
+
+
+void fbinario(int);
+int main()
+{
+	
+		const int MAX = 11;
+		int decimal[MAX] , numero , fila;
+		printf("Este programa convierte un número decimal (desde 0 hasta 1022) a uno binario");
+		printf("\n\n");
+		
+		do{
+			printf("Ingrese un número: ");
+			scanf("%d" , &numero);
+
+			if(numero < 0 || numero > 1023)
+			{
+				printf("\n");
+				printf("La entrada tiene que estar entre 0 y 1023");
+				printf("\n");
+				printf("--------------------------------------------------");
+				printf("\n\n");
+			}
+		}while(numero < 0 || numero > 1023);
+		
+		fbinario(numero);
+}
+
+void fbinario(int numero)
+{
+    const int Max = 11;
+    int decimal[Max] , fila;
+
+    for(fila = 0 ; numero > 0 ; fila++)
+    {
+        decimal[fila] = numero % 2;
+        numero = numero / 2;
+    }
+
+    printf("El valor binario es: ");
+
+    for(fila = fila - 1 ; fila >= 0 ; fila--)
+    {
+        printf("%d", decimal[fila]); 
+    }
+
+}
+
+
