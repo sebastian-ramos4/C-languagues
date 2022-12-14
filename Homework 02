@@ -1,0 +1,271 @@
+/*
+
+Sebastián A. Ramos Flores
+INGE 3016-011H 8:30 AM
+Asignación 2 07-11-2020 Algoritmos completa
+
+Asignación 2
+Premisa:
+    Una compañía de seguros trabaja 5 días a la semana. La compañía desea conocer el total de sus
+    ventas semanales durante 4 semanas. Además, desea conocer el promedio de ventas y la
+    desviación estándar semanal.
+
+Su programa debe ofrecer distintas opciones al usuario:
+    1. Entrar datos
+    2. Mostrar datos
+    3. Total de ventas
+    4. Promedio de ventas
+    5. Desviación estándar
+    6. Terminar
+
+*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  int dias = 5;
+  int semanas = 4;
+  int fila , columna;
+  int entrada;
+  float ventas[semanas][dias] , venta_semanal , promedio_semanal , suma_dias , dias_promedio , sumatoria , desviacion_estandar;
+
+  printf("Sistema para trabajar con los datos de las ventas de una compañía de seguros durante 4 semanas");
+  printf("\n\n");
+  
+  do{
+      printf("Escoja la opción que desea");
+      printf("\n");
+        
+      printf("1- Entrar datos");
+      printf("\n");
+      printf("2- Mostrar datos");
+      printf("\n");
+      printf("3- Total de ventas");
+      printf("\n");
+      printf("4- Promedio de ventas");
+      printf("\n");
+      printf("5- Desviación estándar");
+      printf("\n");
+      printf("6- Terminar");
+      printf("\n\n");
+        
+      printf("Ingrese el numero de la opción que desea: ");
+      scanf("%d" , &entrada);
+        
+      if(entrada != 1 && entrada != 6)
+      {
+          //printf("\n");
+          printf("Por favor, primero ingrese los datos");
+          printf("\n\n");
+      }
+    }while(entrada != 1 && entrada != 6);
+  
+    if(entrada == 1)
+    {
+        //Opción [1] Entrar datos
+        printf("Ingrese el total de ventas por dia de trabajo");
+        printf("\n");
+        
+        for(fila = 0 ; fila < semanas ; fila++)
+        {
+            printf("Semana[%d]" , fila + 1);
+            printf("\n");
+          
+            for(columna = 0 ; columna < dias ; columna++)
+            {
+                do{
+                    printf("Día[%d]: $" , columna + 1);
+                    
+                    scanf("%f" , &ventas[fila][columna]);
+                    
+                    if(ventas[fila][columna] < 0)
+                    {
+                        printf("La entrada no puede ser negativa");
+                        printf("\n");
+                    }
+                }while(ventas[fila][columna] < 0);
+            }
+              
+            printf("\n");
+        }
+        
+        
+        printf("Escoja la opción que desea");
+        printf("\n");
+        
+        printf("2- Mostrar datos");
+        printf("\n");
+        printf("3- Total de ventas");
+        printf("\n");
+        printf("4- Promedio de ventas");
+        printf("\n");
+        printf("5- Desviación estándar");
+        printf("\n");
+        printf("6- Terminar");
+        printf("\n\n");
+        
+        printf("Ingrese el numero de la opción que desea: ");
+        scanf("%d" , &entrada);
+        
+        if(entrada == 2)
+        {
+            //Opción 2 Mostrar datos
+            printf("Ventas diarias por cada semana");
+            printf("\n");
+            
+            for(fila = 0 ; fila < semanas ; fila++)
+            {
+                printf("Semana[%d]" , fila + 1);
+                printf("\n");
+                
+                for(columna = 0 ; columna < dias; columna++)
+                {
+                    printf("Día[%d] = $%0.2f" ,columna + 1 , ventas[fila][columna]);
+                    printf("\n");
+                    
+                }
+                
+                printf("\n");
+            }
+        }
+        
+        
+        if(entrada == 3)
+        {
+            //Opción 3 Total de ventas
+            printf("Total de ventas por semana");
+            printf("\n");
+            
+            for(fila = 0 ; fila < semanas ; fila++)
+            {
+                for(columna = 0 ; columna < dias ; columna++)
+                {
+                    venta_semanal += ventas[fila][columna];
+                    
+                    if(columna == dias - 1)
+                    {
+                        printf("Total semana[%d] = $%0.2f" , fila + 1 , venta_semanal);
+                        printf("\n");
+                        venta_semanal = 0;
+                    }
+                }   
+            }
+            
+            for(fila = 0 ; fila < semanas ; fila++)
+            {
+                for(columna = 0 ; columna < dias ; columna++)
+                {
+                    venta_semanal += ventas[fila][columna];      
+                    
+                }
+                if(fila == semanas - 1)
+                {
+                    printf("Total = $%0.2f" , venta_semanal);
+                    printf("\n");
+                    
+                    venta_semanal = 0;
+                }
+            }
+        }
+        
+        
+        if(entrada == 4)
+        {
+            //Opción 4 Promedio de ventas
+            printf("\n");
+            printf("Promedio de ventas");
+            printf("\n");
+            
+            for(fila = 0 ; fila < semanas ; fila++)
+            {
+                for(columna = 0 ; columna < dias ; columna++)
+                {
+                    venta_semanal += ventas[fila][columna];      
+                   
+                    if(columna == dias - 1)
+                    {
+                        promedio_semanal = (venta_semanal / dias);
+                        printf("Promedio de ventas semana[%d] = $%0.2f" , fila + 1 , promedio_semanal);
+                        printf("\n");
+                        
+                        venta_semanal = 0;
+                    }
+                }
+            }
+            
+            for(fila = 0 ; fila < semanas ; fila++)
+            {
+                for(columna = 0 ; columna < dias ; columna++)
+                {
+                    venta_semanal += ventas[fila][columna];      
+                }
+                
+                if(fila == semanas - 1)
+                {
+                    promedio_semanal = (venta_semanal / (semanas*dias));
+                    printf("Promedio de ventas (general) = $%0.2f" , promedio_semanal);
+                    //printf("\n");
+                    
+                    venta_semanal = 0;
+                }
+                
+                printf("\n");
+            }
+        }
+        
+        
+        if(entrada == 5)
+        {
+            //Opción 5 Desviación estándar
+            printf("Desviación estándar semanal");
+            printf("\n");
+            
+            for(fila = 0 ; fila < semanas ; fila++)
+            {
+                for(columna = 0 ; columna < dias ; columna++)
+                {
+                    suma_dias += ventas[fila][columna];
+                    
+                    if(columna == dias - 1)
+                    {
+                        promedio_semanal = suma_dias / dias;
+                        
+                        for(columna = 0 ; columna < dias ; columna++)
+                        {
+                            dias_promedio = (float)(pow(ventas[fila][columna] - promedio_semanal, 2));
+                            
+                            sumatoria += dias_promedio;
+                            
+                            if(columna == dias - 1)
+                            {
+                                desviacion_estandar = (float)(sqrt(sumatoria/dias));
+                                
+                                printf("Desviación estándar semana[%d] = $%0.2f" , fila + 1 , desviacion_estandar);
+                                
+                                printf("\n");
+                              
+                                suma_dias = 0;
+                                dias_promedio = 0;
+                                sumatoria = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        if(entrada == 6)
+        {
+            printf("\n");
+            printf("Hasta la proxima :)");
+        }
+    }
+    else
+    {
+        printf("\n");
+        printf("Hasta la proxima :)");
+    }
+}
+ 
